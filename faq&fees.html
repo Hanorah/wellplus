@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellPlus Healthcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Barlow', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .button {
+            border-radius: 10px;
+            padding: 10px 20px;
+            background-color: #916E99;
+            /* #916E99 */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 30em;
+            filter: blur(5px);
+        }
+
+        .hero .text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero .text .small-text {
+            color: #916E99;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .hero .text .big-text {
+            font-size: 3em;
+            font-weight: 600;
+        }
+
+        .social-icons {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .social-icons a {
+            display: block;
+            margin: 10px 0;
+            color: #916E99;
+            border: 2px solid #916E99;
+            padding: 10px;
+            border-radius: 50%;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: #916E99;
+            color: white;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .navbar a:hover {
+            color: #916E99;
+            /* #916E99 */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .button {
+            border-radius: 10px;
+            padding: 10px 20px;
+            background-color: #916E99;
+            /* #916E99 */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: black;
+            margin: 5px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: white;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            padding-top: 60px;
+            flex-direction: column;
+        }
+
+        .mobile-nav a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+            display: block;
+        }
+
+        .mobile-nav a:hover {
+            background-color: #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 1px;
+        }
+
+        .image-row .image-container {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .image-row img {
+            width: 100%;
+            transition: transform 0.3s;
+            border-radius: 10px;
+        }
+
+        .image-row .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            text-align: center;
+        }
+
+        .image-row .image-container:hover img {
+            transform: translateY(-100%);
+        }
+
+        .image-row .image-container:hover .image-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .image-row {
+                flex-direction: column;
+            }
+        }
+
+        .arrow-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #D8A444;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .arrow-up {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+        }
+
+        .whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 3em;
+            height: 3em;
+            background-color: #D8A444;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .whatsapp-icon i {
+            color: white;
+            font-size: 2em;
+        }
+
+        .procedures-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .text-container {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .imagea-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imagea-container img {
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .book-appointment {
+            background-color: #916E99;
+            color: white;
+        }
+
+        .ask-question {
+            background-color: #D8A444;
+            color: black;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 1024px) {
+            .procedures-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .text-container {
+                margin: 0 !important;
+            }
+
+            .imagea-container {
+                margin-top: 20px;
+            }
+        }
+
+        .faqq {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .faq-image {
+            flex: 1;
+            background-image: url('https://via.placeholder.com/500');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+        }
+
+        .faq {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .faq h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 3em;
+            font-weight: 700;
+            color: #916E99;
+        }
+
+        .faq-item {
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item h3 {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+        }
+
+        .faq-item p {
+            display: none;
+            margin: 10px 0 0;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        .faq-item.active h3::after {
+            content: '-';
+        }
+
+        .faq-item h3::after {
+            content: '+';
+        }
+
+        @media (max-width: 768px) {
+            .faqq {
+                flex-direction: column;
+            }
+
+            .faq-image {
+                display: none;
+            }
+        }
+
+        .custom-testimonial-carousel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .testimonial-carousel-content {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .testimonial p {
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .testimonial img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        .testimonial .name {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .testimonial .title {
+            color: #916E99;
+            /* #916E99 */
+        }
+
+        .testimonial .controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .testimonial .control {
+            font-size: 2em;
+            color: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .testimonial .control:hover {
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .testimonial .control.left {
+            margin-left: 20px;
+        }
+
+        .testimonial .control.right {
+            margin-right: 20px;
+        }
+
+        .custom-testimonial-carousel .dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+        .custom-testimonial-carousel .dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .custom-testimonial-carousel .dot.active {
+            background-color: #916E99;
+            /* #916E99 */
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-carousel-content {
+                flex-direction: column;
+            }
+
+            .testimonial {
+                min-width: 100%;
+            }
+
+            .testimonial .controls {
+                position: relative;
+                top: unset;
+                transform: unset;
+                margin-top: 10px;
+            }
+
+            .testimonial .control {
+                font-size: 1.5em;
+            }
+
+            .custom-testimonial-carousel .dots {
+                position: relative;
+                left: unset;
+                transform: unset;
+                margin-top: 10px;
+                justify-content: center;
+            }
+        }
+
+        .appointment {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .appointment .form {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .appointment .form h2 {
+            color: #916E99;
+            /* #916E99 */
+            margin-bottom: 20px;
+        }
+
+        .appointment .form input[type="text"],
+        .appointment .form input[type="email"],
+        .appointment .form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: #555;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .appointment .form textarea {
+            height: 100px;
+        }
+
+        .appointment .form button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #916E99;
+            /* #916E99 */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .appointment .form button:hover {
+            background-color: #49006a;
+            /* Darker #916E99 */
+        }
+
+        .appointment .map {
+            flex: 1;
+            height: 300px;
+            background-image: url('https://via.placeholder.com/600x300');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .appointment .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .appointment:hover .map-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .appointment {
+                flex-direction: column;
+            }
+
+            .appointment .form,
+            .appointment .map {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .footer h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Logo</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="faq&fees.html">FAQs</a>
+            <a href="our-team.html">Our-Team</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <button class="button">Book An Appointment</button>
+        <div class="hamburger" onclick="toggleMobileNav()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a>
+            <a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a>
+            <a href="faq&fees.html"><i class="fas fa-question-circle"></i> FAQs</a>
+            <a href="our-team.html"><i class="fas fa-users"></i> Our Team</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+
+    </div>
+
+
+    <div
+        style="display: flex; justify-content: center; align-items: center; padding: 40px; flex-direction: column-reverse;">
+
+        <div style="flex: 1; margin-bottom: 20px; text-align: center;">
+            <img src="https://via.placeholder.com/400" alt="Image" style="width: 100%; height: auto;">
+        </div>
+
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+            <h1 style="font-size: 2.5em; font-weight: bold; color: #916E99; margin-bottom: 20px;">FREE TEXT</h1>
+            <p style="font-size: 1.2em; line-height: 1.6;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                eget risus eu risus semper pharetra. Vivamus blandit lacus a metus finibus interdum. Aliquam erat
+                volutpat. Ut euismod neque id justo ultrices aliquet. Suspendisse nec urna vel nulla lacinia feugiat.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- FAQ Section -->
+    <section class="faqq" id="faq">
+        <div class="faq" id="faq">
+            <h2>FAQ</h2>
+
+            <div class="faq-item">
+                <h3>What services do you offer?</h3>
+                <p>We offer a wide range of healthcare services including primary care, specialized treatments, and
+                    wellness programs.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I schedule an appointment?</h3>
+                <p>You can schedule an appointment by filling out the form on our <a href="#contact">contact page</a> or
+                    by calling our office directly.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you accept insurance?</h3>
+                <p>Yes, we accept most major insurance plans. Please contact us to verify if we accept your specific
+                    insurance provider.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What are your business hours?</h3>
+                <p>Our business hours are from 9:00 AM to 5:00 PM, Monday to Friday.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is parking available at your facility?</h3>
+                <p>Yes, we have free parking available for patients and visitors.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I bring a family member to my appointment?</h3>
+                <p>Yes, you are welcome to bring a family member or caregiver to your appointment.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer telemedicine appointments?</h3>
+                <p>Yes, we offer telemedicine appointments for certain healthcare services. Please inquire with our
+                    office for more information.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I refill my prescription?</h3>
+                <p>You can request a prescription refill through our patient portal or by contacting our pharmacy
+                    directly.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you provide emergency medical services?</h3>
+                <p>While we do not provide emergency medical services, we can refer you to nearby emergency facilities
+                    if needed.</p>
+            </div>
+
+        </div>
+        <div class="faq-image" style="background-image: url('https://via.placeholder.com/800x800');"></div>
+    </section>
+
+    <!-- Testimonial Carousel -->
+    <div class="custom-testimonial-carousel" id="testimonials">
+        <div class="testimonial-carousel-content">
+            <div class="testimonial">
+                <p>"I had a great experience at WellPlus Healthcare. The staff was friendly and the facilities were
+                    top-notch."</p>
+                <img src="https://via.placeholder.com/150" alt="Client 1">
+                <div class="name">John Doe</div>
+                <div class="title">Patient</div>
+            </div>
+            <div class="testimonial">
+                <p>"The doctors here are very knowledgeable and caring. I highly recommend WellPlus Healthcare."</p>
+                <img src="https://via.placeholder.com/150" alt="Client 2">
+                <div class="name">Jane Smith</div>
+                <div class="title">Patient</div>
+            </div>
+            <div class="testimonial">
+                <p>"I was impressed with the efficiency of the service. WellPlus Healthcare truly values their
+                    patients."</p>
+                <img src="https://via.placeholder.com/150" alt="Client 3">
+                <div class="name">Michael Johnson</div>
+                <div class="title">Patient</div>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="control left" onclick="prevTestimonial()"><i class="fas fa-chevron-left"></i></div>
+            <div class="control right" onclick="nextTestimonial()"><i class="fas fa-chevron-right"></i></div>
+        </div>
+        <div class="dots">
+            <span class="dot active" onclick="gotoTestimonial(0)"></span>
+            <span class="dot" onclick="gotoTestimonial(1)"></span>
+            <span class="dot" onclick="gotoTestimonial(2)"></span>
+        </div>
+    </div>
+
+    <!-- Appointment Section -->
+    <section class="appointment" id="contact">
+        <div class="form">
+            <h2>Book an Appointment</h2>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Message"></textarea>
+            <button>Submit</button>
+        </div>
+        <div class="map" style="background-image: url('https://via.placeholder.com/800x600');">
+            <div class="map-overlay">
+                <h3>MAP</h3>
+                <p>123 Example Street,<br>Cityville, ABC123</p>
+            </div>
+        </div>
+    </section>
+    <div class="footer">
+        <div class="footer-section">
+            <h3>WELLPLUS</h3>
+            <p>Our Commitment: WELLPLUS acknowledges the particular in which we work. We pay our respect to their Elders
+                past, present and emerging.</p>
+            <p>Our team is committed to a patient-focused care model, we work as a team to get the best health outcomes
+                for
+                you.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p><i class="fas fa-envelope"></i> wellplus@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 1300 181 035</p>
+        </div>
+        <div class="footer-section">
+            <h3>Our Hours</h3>
+            <p>Mon: 7am-7pm</p>
+            <p>Tues: 7am-7pm</p>
+            <p>Wed: 7am-7pm</p>
+            <p>Thurs: 7am-7pm</p>
+            <p>Fri: 7am – 6:30pm</p>
+            <p>Sat: 8am – 1pm</p>
+        </div>
+    </div>
+
+
+    <!-- Back to Top Button -->
+    <div class="arrow-box" onclick="scrollToTop()">
+        <div class="arrow-up"></div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-icon">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <script>
+        var faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(function (item) {
+            var question = item.querySelector('h3');
+            var answer = item.querySelector('p');
+
+            question.addEventListener('click', function () {
+                item.classList.toggle('active');
+                if (item.classList.contains('active')) {
+                    answer.style.display = 'block';
+                } else {
+                    answer.style.display = 'none';
+                }
+            });
+        });
+        // Toggle mobile navigation menu
+        function toggleMobileMenu() {
+            var mobileNav = document.getElementById("mobileNav");
+            mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
+        }
+
+        // Testimonial Carousel
+        var currentTestimonial = 0;
+        var testimonials = document.querySelectorAll('.testimonial');
+
+        function resetTestimonials() {
+            for (var i = 0; i < testimonials.length; i++) {
+                testimonials[i].style.display = 'none';
+            }
+        }
+
+        function startTestimonials() {
+            resetTestimonials();
+            testimonials[0].style.display = 'block';
+        }
+
+        function nextTestimonial() {
+            resetTestimonials();
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            testimonials[currentTestimonial].style.display = 'block';
+            updateDots();
+        }
+
+        function prevTestimonial() {
+            resetTestimonials();
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            testimonials[currentTestimonial].style.display = 'block';
+            updateDots();
+        }
+
+        function gotoTestimonial(n) {
+            resetTestimonials();
+            currentTestimonial = n;
+            testimonials[currentTestimonial].style.display = 'block';
+            updateDots();
+        }
+
+        function updateDots() {
+            var dots = document.querySelectorAll('.dot');
+            for (var i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            dots[currentTestimonial].classList.add('active');
+        }
+
+        startTestimonials();
+
+        // Scroll to Top Button
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+
+</html>
