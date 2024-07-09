@@ -559,7 +559,7 @@ section {
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
-    background-color: #d4af37enrod;
+    background-color:#d4af37;
     color: #fff;
     text-transform: uppercase;
     font-weight: 600;
@@ -573,7 +573,7 @@ section {
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
-    background-color: #d4af37enrod;
+    background-color:#d4af37;
     color: #fff;
     text-transform: uppercase;
     font-weight: 600;
@@ -677,8 +677,8 @@ article {
 
 .pagination>li>a {
     background-color: #fff;
-    color: #d4af37enrod;
-    border-color: #d4af37enrod;
+    color: #d4af37;
+    border-color:#d4af37;
     border-radius: 0;
 }
 
@@ -686,9 +686,9 @@ article {
 .pagination>li:hover:focus>a,
 .pagination>li.active a,
 .pagination>li.active:hover a {
-    background-color: #d4af37enrod;
+    background-color: #d4af37;
     color: #fff;
-    border: 1px solid #d4af37enrod;
+    border: 1px solid#d4af37;
 }
 
 /*****************************************
